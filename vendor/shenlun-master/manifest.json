@@ -1,0 +1,79 @@
+{
+  "name": "Shenlun Master",
+  "repository": "https://github.com/coffe-d/Shenlun.skill",
+  "commit": "354341cdce1f357bb78c24f05a929a339cd7f4cf",
+  "license": "MIT",
+  "scope": "Author-authored rule documents only; no source lectures, exam corpus, executable scripts or runtime self-updates.",
+  "files": [
+    {
+      "path": "LICENSE",
+      "git_blob_sha": "d36c4cf87c588c71b4c14180db4c37d7ac7a6506",
+      "sha256": "236d69fdb0abdc21aaabacb3c4049f037fa9e4c415fa2d2d9ad1fa226f1814b3"
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha": "06131f607370516f7d7d09238a81d2dece736e64",
+      "sha256": "b0cca4ce980f379e9aa053c7fff5320f08390c2ab7c0a94ce414faad493fc141"
+    },
+    {
+      "path": "skills/shenlun-router/SKILL.md",
+      "git_blob_sha": "03ff04f1c360838e05f4b090d0279eec275060cd",
+      "sha256": "4f732bcd47eb99308a50fc717e9027e86a8ac644afff3d54c252d197272676b6"
+    },
+    {
+      "path": "skills/shenlun-xiaoti/SKILL.md",
+      "git_blob_sha": "68ae5ce03298670ca5ee04345023f34ae93e433c",
+      "sha256": "d6f36f8e99f5c918b9bbe36427c10ecd00ebf8aef2137c5940406709a54bdbf9"
+    },
+    {
+      "path": "skills/shenlun-dawenti/SKILL.md",
+      "git_blob_sha": "c55968a507ef5f37dcd81cf94fd421f3446ddacc",
+      "sha256": "1afd2391fcedb1bcd6e670a6ad551dbcce0af01ec3a1b38426310fb4b47c3d95"
+    },
+    {
+      "path": "skills/shared/references/error-bank-rules.md",
+      "git_blob_sha": "21c628ee528505c544ace0da11e5d8234e00e4d6",
+      "sha256": "5bef02c326c63ce11b4643ccaa31f769d3e3d369432bfcd61dfa31391cf087be"
+    },
+    {
+      "path": "skills/shared/references/expression-upgrade-rules.md",
+      "git_blob_sha": "02c5397350a7feb2dba74952e165f305ceacdf63",
+      "sha256": "9a36a1e5c47ec21b5cd4aaee9f69f3176fc9b38a25007ed2191ef7359620ca67"
+    },
+    {
+      "path": "skills/shared/references/image-reading-rules.md",
+      "git_blob_sha": "7628abe98379bd7e99d567eb6ed611badef3e349",
+      "sha256": "d4a6db9671c9a8e475aa7b2f8ceb6a3f1486ba7f5268b56d60c350a4cbf93094"
+    },
+    {
+      "path": "skills/shenlun-xiaoti/references/scoring-rules.md",
+      "git_blob_sha": "aa6f888edeaf8337b17c93dfa2a5d44d33c2a489",
+      "sha256": "3fbdabc907eef4aa63fc03b7b54642568d885e57b85c62e3ed146ac7cfad71fc"
+    },
+    {
+      "path": "skills/shenlun-xiaoti/references/writing-rules.md",
+      "git_blob_sha": "e8d285e6d75aae7bc47ad4c7a92deb1382a9f437",
+      "sha256": "60f12f27bd450c28e2ce20dbee79425cd691528706cc11cd3ee768a47c4ad271"
+    },
+    {
+      "path": "skills/shenlun-xiaoti/references/bai-lu-methodology.md",
+      "git_blob_sha": "cf44fc628ef96ecc2afab26be668ade03ad100f2",
+      "sha256": "107555c3cbf4b1af2e8199684d241092c2d7cbfbccffaaa78df074301d7d2c05"
+    },
+    {
+      "path": "skills/shenlun-xiaoti/references/xiaoma-methodology.md",
+      "git_blob_sha": "ce1a81833e6f90c393434e0ed01b36d5c5a7f2ec",
+      "sha256": "8caf089db96669796016ffa3fc3b83fdff41c08cc2731382dff3355c90e4e410"
+    },
+    {
+      "path": "skills/shenlun-dawenti/references/yuan-dong-methodology.md",
+      "git_blob_sha": "6c861146a02e2c285697436315ed39d188180897",
+      "sha256": "fc84f7406e244b08c65950a62b5d4f0120a174647b9c801efdad31a4a77a4d1b"
+    },
+    {
+      "path": "skills/shenlun-dawenti/references/fallback-eval-rules.md",
+      "git_blob_sha": "38c2e9be386b81e352d2eec042d9370bf509335b",
+      "sha256": "9b26b603fcd0e3197f850af68bb1b919d4123df5a8b30a77b50183aee8e74840"
+    }
+  ]
+}

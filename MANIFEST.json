@@ -1,0 +1,478 @@
+{
+  "project": "GongkaoTutor",
+  "version": "0.10.0",
+  "release_candidate_date": "2026-11-04",
+  "scope": "Source, original samples, public documentation and attributed vendor rules only.",
+  "excludes": [
+    "user data",
+    "credentials",
+    "uploaded materials",
+    "OCR weights",
+    "caches",
+    "local logs",
+    "Python runtimes"
+  ],
+  "vendor": {
+    "repository": "https://github.com/coffe-d/Shenlun.skill",
+    "commit": "354341cdce1f357bb78c24f05a929a339cd7f4cf",
+    "verified_files": 14
+  },
+  "manifest_note": "This manifest does not hash itself.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 185,
+      "sha256": "6beb3d4984168377e7a7f17af948b68c34fe38ec57dbb6a726cc38919d25d4dd"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 230,
+      "sha256": "ebdfb95882076809b690822fbc95391d6c258617bb403465df49adf248f68c3f"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1606,
+      "sha256": "9dffb5075c312037d3aeb139e44ce1acc4eaf2beba8f3ff4d272497a1fd516eb"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1067,
+      "sha256": "401d8a06b840a8bc22e941f660d5674dfb7c6f3dac0fef79c5001f950c16b67d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6264,
+      "sha256": "532c5fe19614b59c0b1ea711f06a25f775693fe3e4e63f61ad56d6c5a8fedc1a"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1601,
+      "sha256": "6ca6873e368ae12d85f6924b37834369b6212b99901506fd488f46bf81e5414f"
+    },
+    {
+      "path": "app.py",
+      "bytes": 75616,
+      "sha256": "88644ddbb51cea09ca82a63b2a261309582af8e3dbeeebca099cd5f210fd4d72"
+    },
+    {
+      "path": "book_import.py",
+      "bytes": 15506,
+      "sha256": "b52e3c40b496e414e3ff4c0aa54bfc13b4346f3e559d02fcf11b8c67a5bad7b2"
+    },
+    {
+      "path": "calculation_training.py",
+      "bytes": 14029,
+      "sha256": "f87cece28d62b43f348d05e26f3039ef36aca780daf6aa7763903f1482f6c933"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 2072,
+      "sha256": "d6e8a200fb8c141c92727621b53e43800f9963aef80338926cfd9a2d05a814cd"
+    },
+    {
+      "path": "docs/DATA_AND_PRIVACY.md",
+      "bytes": 1873,
+      "sha256": "52bf4d63ad5b1f222fa187d1a2012637db476ebbfc5b663d90d86ed84262583f"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "bytes": 2572,
+      "sha256": "68b5cb0f7e78cc33e7eeece2e5f26611c7ffcdbe70ce15a18afa2bda42410709"
+    },
+    {
+      "path": "docs/USER_GUIDE.md",
+      "bytes": 3345,
+      "sha256": "b7db5418889612b98259ccccbe27014f1287bd425062aaf15c7542b03afe57a1"
+    },
+    {
+      "path": "docs/images/calculation-training.png",
+      "bytes": 54536,
+      "sha256": "0eecaabe2c5418927ab6b98c33a43f50c3e5c49bbdb290bd8b21c067e4183359"
+    },
+    {
+      "path": "document_io.py",
+      "bytes": 11197,
+      "sha256": "6f73f71c06d7c81e2bf7fdb6cea7687645d60009881c2b6f58d5f4a4c8a909f2"
+    },
+    {
+      "path": "file_imports.py",
+      "bytes": 20550,
+      "sha256": "874a1042bb6c52dc46f4de02afb1b132687123196276125acea69034ee7f63e3"
+    },
+    {
+      "path": "file_pages.py",
+      "bytes": 6829,
+      "sha256": "74120cc7bcbee048b1c23cadf75f07819ff68ed798bb4a03144dd74f8d54c466"
+    },
+    {
+      "path": "install-dependencies.ps1",
+      "bytes": 1201,
+      "sha256": "2ed652d2f8a1d2955d4faeee8fdf3689259fb886be848277f54259a46773d7ec"
+    },
+    {
+      "path": "knowledge_index.py",
+      "bytes": 2774,
+      "sha256": "52748c23347b41dec60538d70225656030dbe2973f00382cb440fd26771aab21"
+    },
+    {
+      "path": "knowledge_reader.py",
+      "bytes": 2516,
+      "sha256": "9d7ecca588a03f4e752c3bd470d303b757dbbe002f86d144d0948962327c093a"
+    },
+    {
+      "path": "learning_analysis.py",
+      "bytes": 18900,
+      "sha256": "0b5e922de8e885547aaf0e639fa112a61c7f9cab42919a8c25da946106d29f4d"
+    },
+    {
+      "path": "learning_coach.py",
+      "bytes": 25874,
+      "sha256": "167aac419795b85b9742b389f8ce0f58a63a86e72fb7ceff2eb99e5850e9d688"
+    },
+    {
+      "path": "library_rebuild.py",
+      "bytes": 8266,
+      "sha256": "1b59f4444d8c0399c7fdd63e4d086e8e5c72694a3cdde8a34b737f31410794dd"
+    },
+    {
+      "path": "local_ocr.py",
+      "bytes": 9381,
+      "sha256": "558da4d5de32992f71268903ce08c0fdfbf4f4a8efa698355b8d80d78aecac48"
+    },
+    {
+      "path": "page_assist.py",
+      "bytes": 18483,
+      "sha256": "9bb3ba203f8df60810c6ef9a8ed040fbf3a84b4a2d5562bc0e1af9f34338a0d7"
+    },
+    {
+      "path": "question_reading.py",
+      "bytes": 13190,
+      "sha256": "160a90b84c41c0a75abc5e39148a775f615fa185b878c256c41feeabc0c3a2df"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 36,
+      "sha256": "b6dc8c3d290a017b04a26c6a9f730a97e860ef760deb103b73586ea32a541817"
+    },
+    {
+      "path": "requirements-tested.txt",
+      "bytes": 223,
+      "sha256": "97bec902ae8e1dcd3bed1f70407d89a1c10302df4a3adf238480a7c59826d8f8"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 118,
+      "sha256": "e3186a37efba2b74cf7233ab1a4d52bdb403ff6a0e6ab1d8fc6e021243c5b956"
+    },
+    {
+      "path": "samples/knowledge.md",
+      "bytes": 1866,
+      "sha256": "7f0abe6af24473f815a32f1dd47196d33adc79df4d2d6235f7c51a9de58e283b"
+    },
+    {
+      "path": "samples/questions.json",
+      "bytes": 22769,
+      "sha256": "c0833749537fb27cf8e31ad15c51f5c3ba74ebcabaa63eeb4ebc59b78a3fcab0"
+    },
+    {
+      "path": "scripts/build_release.py",
+      "bytes": 6593,
+      "sha256": "eb982ea23d0c3ed91871da186e72dc162fa888f4d95c51cecfbd63a33896c0da"
+    },
+    {
+      "path": "service.ps1",
+      "bytes": 3327,
+      "sha256": "9ff594713b4d008e49cc125126989aa8b7c79f1be4dcfeb2910940c406f00d6c"
+    },
+    {
+      "path": "shenlun.py",
+      "bytes": 31234,
+      "sha256": "e94085c3d3825dde67091658834a756f41910fdcb56fc0f82d908e65506bd8e6"
+    },
+    {
+      "path": "shenlun_dimensions.py",
+      "bytes": 17606,
+      "sha256": "0ec8d8a51b0e77a0a1233c814de5977c50b68d46eafa749e67300e3baf726e7e"
+    },
+    {
+      "path": "start.ps1",
+      "bytes": 339,
+      "sha256": "1bd603422e1403cbf862ebf291becdbca1bb355975f161401d1bda6107958b58"
+    },
+    {
+      "path": "tests/test_app.py",
+      "bytes": 15093,
+      "sha256": "8603c76cc5145e55dd613e576ed3ef40c07b4f9a9a333e58a51a77d579af5840"
+    },
+    {
+      "path": "tests/test_batch_uploads.py",
+      "bytes": 10717,
+      "sha256": "f99e4970ca1ab1b14201a0dba0fd843a0a6f2e3640a2c9a58bdfbfa926643758"
+    },
+    {
+      "path": "tests/test_book_rebuild.py",
+      "bytes": 9238,
+      "sha256": "352b5ee10ba910275baf6f01db9f9e44a7fadc370d755451caabd7215586f82f"
+    },
+    {
+      "path": "tests/test_calculation_training.py",
+      "bytes": 11312,
+      "sha256": "2c0203b688fcf084d53088343380ea6ecd3a9ff56986f405711eebb1d02ee75c"
+    },
+    {
+      "path": "tests/test_imports.py",
+      "bytes": 4601,
+      "sha256": "de3d0ec4172ed7fad7997fba02e6d6fd6f2708f87dc4e1b94633bf58829280ba"
+    },
+    {
+      "path": "tests/test_learning_analysis.py",
+      "bytes": 10273,
+      "sha256": "63354295caf268e9280bfefadf8488cf4e220e45d32aaa76f34506794453b3d6"
+    },
+    {
+      "path": "tests/test_learning_coach.py",
+      "bytes": 17774,
+      "sha256": "ab75a77aff04ec880f0cc1b27b46024ede3949e829f4fe9d245ab079d4d2843f"
+    },
+    {
+      "path": "tests/test_ocr.py",
+      "bytes": 10361,
+      "sha256": "c856053c78bfb13a9e66882ca86042dbd4130f0a3d34dbd92ac21288865321b4"
+    },
+    {
+      "path": "tests/test_page_assist.py",
+      "bytes": 10583,
+      "sha256": "11221f3130d3d6d32cbb58d0f934d1e674bbae0b90e5b81d90bb17cd64526831"
+    },
+    {
+      "path": "tests/test_question_reading.py",
+      "bytes": 8696,
+      "sha256": "31776fac17f0b6f9c816d1c3f6fff362c30e634225edf4f36293326cdb374b94"
+    },
+    {
+      "path": "tests/test_queue_delete.py",
+      "bytes": 7487,
+      "sha256": "08c659e85ddbe6a8e9d2c0efaa9708d3c544231592134540331c32e915ee257c"
+    },
+    {
+      "path": "tests/test_shenlun.py",
+      "bytes": 22816,
+      "sha256": "53e1c8976abd93e4915d9f19f4934fa3f4d609c73f3f0cd0d6a7a33f5bda460c"
+    },
+    {
+      "path": "tests/test_shenlun_dimensions.py",
+      "bytes": 16595,
+      "sha256": "176ae2e43acf4cdda610fcf437dc4b323e32e77692f678a021caf05db5a1f533"
+    },
+    {
+      "path": "tests/test_visual_common.py",
+      "bytes": 4531,
+      "sha256": "89ed5b2195f9b5ae51110e6890f56eee42c128550538673c665e505e644baac7"
+    },
+    {
+      "path": "vendor/shenlun-master/LICENSE",
+      "bytes": 1065,
+      "sha256": "236d69fdb0abdc21aaabacb3c4049f037fa9e4c415fa2d2d9ad1fa226f1814b3"
+    },
+    {
+      "path": "vendor/shenlun-master/NOTICE.md",
+      "bytes": 982,
+      "sha256": "280910d489ffa86924ff36e2d94302da2aa1e28f1a62a1c81478df8ecc8005c4"
+    },
+    {
+      "path": "vendor/shenlun-master/README.md",
+      "bytes": 27416,
+      "sha256": "b0cca4ce980f379e9aa053c7fff5320f08390c2ab7c0a94ce414faad493fc141"
+    },
+    {
+      "path": "vendor/shenlun-master/manifest.json",
+      "bytes": 3479,
+      "sha256": "e660b5f50fac2a855cd6db55f2ac4e65a74ed3b7645ee879ea4793c9f656367a"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shared/references/error-bank-rules.md",
+      "bytes": 12319,
+      "sha256": "5bef02c326c63ce11b4643ccaa31f769d3e3d369432bfcd61dfa31391cf087be"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shared/references/expression-upgrade-rules.md",
+      "bytes": 7610,
+      "sha256": "9a36a1e5c47ec21b5cd4aaee9f69f3176fc9b38a25007ed2191ef7359620ca67"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shared/references/image-reading-rules.md",
+      "bytes": 6007,
+      "sha256": "d4a6db9671c9a8e475aa7b2f8ceb6a3f1486ba7f5268b56d60c350a4cbf93094"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-dawenti/SKILL.md",
+      "bytes": 5812,
+      "sha256": "1afd2391fcedb1bcd6e670a6ad551dbcce0af01ec3a1b38426310fb4b47c3d95"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-dawenti/references/fallback-eval-rules.md",
+      "bytes": 4143,
+      "sha256": "9b26b603fcd0e3197f850af68bb1b919d4123df5a8b30a77b50183aee8e74840"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-dawenti/references/yuan-dong-methodology.md",
+      "bytes": 26056,
+      "sha256": "fc84f7406e244b08c65950a62b5d4f0120a174647b9c801efdad31a4a77a4d1b"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-router/SKILL.md",
+      "bytes": 11602,
+      "sha256": "4f732bcd47eb99308a50fc717e9027e86a8ac644afff3d54c252d197272676b6"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-xiaoti/SKILL.md",
+      "bytes": 5789,
+      "sha256": "d6f36f8e99f5c918b9bbe36427c10ecd00ebf8aef2137c5940406709a54bdbf9"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-xiaoti/references/bai-lu-methodology.md",
+      "bytes": 18746,
+      "sha256": "107555c3cbf4b1af2e8199684d241092c2d7cbfbccffaaa78df074301d7d2c05"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-xiaoti/references/scoring-rules.md",
+      "bytes": 3992,
+      "sha256": "3fbdabc907eef4aa63fc03b7b54642568d885e57b85c62e3ed146ac7cfad71fc"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-xiaoti/references/writing-rules.md",
+      "bytes": 2583,
+      "sha256": "60f12f27bd450c28e2ce20dbee79425cd691528706cc11cd3ee768a47c4ad271"
+    },
+    {
+      "path": "vendor/shenlun-master/skills/shenlun-xiaoti/references/xiaoma-methodology.md",
+      "bytes": 18372,
+      "sha256": "8caf089db96669796016ffa3fc3b83fdff41c08cc2731382dff3355c90e4e410"
+    },
+    {
+      "path": "web/app.js",
+      "bytes": 65057,
+      "sha256": "72ce898393df82a872d4fc7b072708900d60bf0e871d83578a0e840bf332ff32"
+    },
+    {
+      "path": "web/calculation-training.css",
+      "bytes": 6390,
+      "sha256": "6f263351f58b92bb272f083b960d9ed0812d2e1970aae57a9b7ae69b96e91016"
+    },
+    {
+      "path": "web/calculation-training.js",
+      "bytes": 19308,
+      "sha256": "bcd666fc956086625bb385ba37d6ac3a2ad248375e7ed7bb17d8f0a98375b1b1"
+    },
+    {
+      "path": "web/fonts.css",
+      "bytes": 76,
+      "sha256": "2eb843eb3918975066614d64c5dd24dc00ade08debd25576035d4f0b3b81cb7e"
+    },
+    {
+      "path": "web/icon.svg",
+      "bytes": 262,
+      "sha256": "31ca043d8e1ce7293fe8515c97069dab61019dd4a48b5c14af4bf2dc6c5dafb7"
+    },
+    {
+      "path": "web/imports.css",
+      "bytes": 2076,
+      "sha256": "569e01c8b9c13ecdf1b53593b6d88c402b250d3ea2216919171bfe87a01d8ca2"
+    },
+    {
+      "path": "web/imports.js",
+      "bytes": 22347,
+      "sha256": "f2818140005d683de963302a5678c89e931abe012d3cb4bec2577859a45d0201"
+    },
+    {
+      "path": "web/index.html",
+      "bytes": 1637,
+      "sha256": "566283e6b26ba29b44575963ba8c996ef348295fb944944ce64506a7b40f0bd0"
+    },
+    {
+      "path": "web/knowledge-reader.js",
+      "bytes": 2432,
+      "sha256": "64571f9d2c913efef06f233d04306304ec17d26a8d431a2d4156b0369e002aba"
+    },
+    {
+      "path": "web/learning-analysis.css",
+      "bytes": 799,
+      "sha256": "97ad69af0a15acef98748f85817a33199e068aa97913ed0c60387b2a1a632994"
+    },
+    {
+      "path": "web/learning-analysis.js",
+      "bytes": 9036,
+      "sha256": "305f0b9aec3187bb1e09c4ec2161d71b9617c295b2e39480dfb0e843304b946e"
+    },
+    {
+      "path": "web/learning-coach.css",
+      "bytes": 1981,
+      "sha256": "ebc9f4c96ed27fcedaca24bbbcad5cf63caa9a4f7ce5db631908547bbcbbe2bd"
+    },
+    {
+      "path": "web/learning-coach.js",
+      "bytes": 13628,
+      "sha256": "e8c6f419843015b00af532c892a1425a99a497e6e83e9d9ceea7af1d7b6121eb"
+    },
+    {
+      "path": "web/page-assist.css",
+      "bytes": 1851,
+      "sha256": "5b308e4fc89349c259f0a99cab2283bbd93febee105e525fb3948b8e157745ec"
+    },
+    {
+      "path": "web/page-assist.js",
+      "bytes": 15371,
+      "sha256": "fc29c263e27c78d6f7c4825a74f5084f4180103a44933f5711fbf81062d1b91e"
+    },
+    {
+      "path": "web/question-reading.css",
+      "bytes": 3836,
+      "sha256": "ddf7eec9a7321f7b0c9e0065ebf3bd4748132115737065acf3ca53d4f85139a2"
+    },
+    {
+      "path": "web/question-reading.js",
+      "bytes": 5798,
+      "sha256": "43760771026c397eb23e0648014a3093ceff8c0c0ee7bea505538a6d388cf62c"
+    },
+    {
+      "path": "web/shenlun-dimensions.css",
+      "bytes": 1246,
+      "sha256": "04e243dc99d2f7ac7774df685068dfb0d6a049cc884bd53e644b9b6acf9bf644"
+    },
+    {
+      "path": "web/shenlun-dimensions.js",
+      "bytes": 5379,
+      "sha256": "cdfc4e79b7080b4cc004cdbba5028fa9f3de8ac28263ad705bcdf220bc4deb37"
+    },
+    {
+      "path": "web/shenlun.css",
+      "bytes": 2161,
+      "sha256": "403deda41449efb62735ad4895edc855a926b5adc545f3eb3b772aabfe7c04a6"
+    },
+    {
+      "path": "web/shenlun.js",
+      "bytes": 17307,
+      "sha256": "c737e24f61ebcdc0eda95684bc40d8def8cd393afd080adbe49ddb15c35a9523"
+    },
+    {
+      "path": "web/style.css",
+      "bytes": 21995,
+      "sha256": "70424df48467cc50ee88e7e936ace558cc09c51496b88fcf08dd097aa79d41f1"
+    },
+    {
+      "path": "停止知序.cmd",
+      "bytes": 107,
+      "sha256": "2bd5fad4a27457362635be557fbe0594e44d3bdc1aa0aea7dc014583c56525f1"
+    },
+    {
+      "path": "启动知序.cmd",
+      "bytes": 107,
+      "sha256": "06f832195f23a8aacc3c6335a9cac8eb35bbb99e567f8fb431ac35aa38c3b983"
+    },
+    {
+      "path": "首次安装.cmd",
+      "bytes": 286,
+      "sha256": "c6a0b4c0a660c0ab34f9958522ee32b6c2516f4868943934e0336f554dfbe769"
+    }
+  ]
+}

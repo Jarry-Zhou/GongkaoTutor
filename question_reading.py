@@ -223,6 +223,9 @@ def presentation(app,q):
 def model_images(app,q,limit=6):
     """Only relevant, cropped assets can leave the local app, never full pages."""
     q=presentation(app,q);assets=[]
+    if q.get('rich_content'):
+        import national_bank
+        return national_bank.model_images(app,q,limit)
     if q.get('reading_source') and q.get('page_images'):
         data=reading(app,q)
         if data['warnings']:raise app.uploads.error('本题题图尚未可靠定位，请先核对原页后再使用 AI 分析。',409)
@@ -232,3 +235,12 @@ def model_images(app,q,limit=6):
         raise app.uploads.error('本题尚无单题裁图，暂不向模型发送整页图片。',409)
     if len(assets)>limit:raise app.uploads.error('本次相关题图较多，请缩小分析范围。',409)
     return ['data:image/jpeg;base64,'+base64.b64encode(app.page_assist.pages.asset_path(a['id']).read_bytes()).decode('ascii') for a in assets]
+
+
+def image_count(q):
+    if q.get('rich_content'):
+        import national_bank
+        return national_bank.image_count(q)
+    spec=q.get('reading_source',{})
+    if spec:return (1 if spec.get('material') else 0)+len(spec.get('question',[]))
+    return 1 if q.get('visual') or q.get('requires_image') or q.get('display_original') else 0

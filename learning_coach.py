@@ -65,6 +65,7 @@ def current_question(app, attempt):
 def version(app,q):
     value={k:q.get(k) for k in ('stem','options','answer','material','reading_source','reading_stem','reading_material',
                               'visual','requires_image','module','knowledge_points','status')}
+    if q.get('rich_content'):value.update(rich_content=q['rich_content'],true_exam=q.get('true_exam'))
     overrides=[]
     for p in q.get('page_images',[]):
         try:

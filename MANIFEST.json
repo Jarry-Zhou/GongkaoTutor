@@ -1,8 +1,8 @@
 {
   "project": "GongkaoTutor",
-  "version": "0.10.0",
-  "release_candidate_date": "2026-11-04",
-  "scope": "Source, original samples, public documentation and attributed vendor rules only.",
+  "version": "0.11.0",
+  "release_candidate_date": "2026-11-12",
+  "scope": "Source, pinned public download index, documentation and attributed vendor rules only. No exam corpus.",
   "excludes": [
     "user data",
     "credentials",
@@ -31,8 +31,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "bytes": 1606,
-      "sha256": "9dffb5075c312037d3aeb139e44ce1acc4eaf2beba8f3ff4d272497a1fd516eb"
+      "bytes": 2211,
+      "sha256": "8907dbc3a7bc1d941de792e13fd81329f0f75d7c42e8fc34b09bb017facb44ed"
     },
     {
       "path": "LICENSE",
@@ -41,18 +41,28 @@
     },
     {
       "path": "README.md",
-      "bytes": 6264,
-      "sha256": "532c5fe19614b59c0b1ea711f06a25f775693fe3e4e63f61ad56d6c5a8fedc1a"
+      "bytes": 7410,
+      "sha256": "86703f9e0e76b7756c0e1b86337d9da430e5bb0452d4e8d4461b8943c621e745"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 1601,
-      "sha256": "6ca6873e368ae12d85f6924b37834369b6212b99901506fd488f46bf81e5414f"
+      "bytes": 1959,
+      "sha256": "4a8852a5dfd7c3bf2610e8ce0fa7f6b18380c3acd9a3e8299f95732cc4c52d10"
     },
     {
       "path": "app.py",
-      "bytes": 75616,
-      "sha256": "88644ddbb51cea09ca82a63b2a261309582af8e3dbeeebca099cd5f210fd4d72"
+      "bytes": 77432,
+      "sha256": "5f813505cb23d865495d9e87820307d89097214b50754b146dbbd8a58b9f977f"
+    },
+    {
+      "path": "banks/guokao/README.md",
+      "bytes": 956,
+      "sha256": "e13767c690107af186afc1e43d755838b2764b81b2532b88f60d0c399d8b7546"
+    },
+    {
+      "path": "banks/guokao/source.json",
+      "bytes": 632320,
+      "sha256": "6a1f3093a17cfe628f3562970346dbdf2f2966dbf561b2c4436d40d2dfac13b6"
     },
     {
       "path": "book_import.py",
@@ -66,28 +76,33 @@
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "bytes": 2072,
-      "sha256": "d6e8a200fb8c141c92727621b53e43800f9963aef80338926cfd9a2d05a814cd"
+      "bytes": 2158,
+      "sha256": "cc01b607298d0f38002da53f954e647ccee40593f05dde2e6a1919cf78338c7b"
     },
     {
       "path": "docs/DATA_AND_PRIVACY.md",
-      "bytes": 1873,
-      "sha256": "52bf4d63ad5b1f222fa187d1a2012637db476ebbfc5b663d90d86ed84262583f"
+      "bytes": 1916,
+      "sha256": "e5f32546b3514be2b76bbcabff1fa3179f4f06e07ba7bee6120c8b5b0dc87fbf"
     },
     {
       "path": "docs/INSTALL.md",
-      "bytes": 2572,
-      "sha256": "68b5cb0f7e78cc33e7eeece2e5f26611c7ffcdbe70ce15a18afa2bda42410709"
+      "bytes": 2735,
+      "sha256": "2365a2467bdd203582786956ef40b1a33302fb08711c6499739c598cfc6fa98d"
     },
     {
       "path": "docs/USER_GUIDE.md",
-      "bytes": 3345,
-      "sha256": "b7db5418889612b98259ccccbe27014f1287bd425062aaf15c7542b03afe57a1"
+      "bytes": 3916,
+      "sha256": "b6f95d8648106eeb999ade713b8064052d159b23f3b62cf9889d6c87d20832dc"
     },
     {
       "path": "docs/images/calculation-training.png",
       "bytes": 54536,
       "sha256": "0eecaabe2c5418927ab6b98c33a43f50c3e5c49bbdb290bd8b21c067e4183359"
+    },
+    {
+      "path": "docs/national-bank-0.11.md",
+      "bytes": 3525,
+      "sha256": "69ac34eec4c75808f100644bd7bf0cb95d0afd878b05aa2043010b9263606e21"
     },
     {
       "path": "document_io.py",
@@ -106,8 +121,8 @@
     },
     {
       "path": "install-dependencies.ps1",
-      "bytes": 1201,
-      "sha256": "2ed652d2f8a1d2955d4faeee8fdf3689259fb886be848277f54259a46773d7ec"
+      "bytes": 1441,
+      "sha256": "2db83206f715e8215d5f4bb010369333fa69149e7a9ca4b54cb23d829faf4347"
     },
     {
       "path": "knowledge_index.py",
@@ -121,13 +136,13 @@
     },
     {
       "path": "learning_analysis.py",
-      "bytes": 18900,
-      "sha256": "0b5e922de8e885547aaf0e639fa112a61c7f9cab42919a8c25da946106d29f4d"
+      "bytes": 18675,
+      "sha256": "2c61dc9d7c41794b8e459b13d7301e838563fcd3c857d396462468a8fd38925c"
     },
     {
       "path": "learning_coach.py",
-      "bytes": 25874,
-      "sha256": "167aac419795b85b9742b389f8ce0f58a63a86e72fb7ceff2eb99e5850e9d688"
+      "bytes": 25977,
+      "sha256": "0970cfc9b64ea6591f65f02d249b859a7caa81aed941e270680cef2568a42ce6"
     },
     {
       "path": "library_rebuild.py",
@@ -140,14 +155,19 @@
       "sha256": "558da4d5de32992f71268903ce08c0fdfbf4f4a8efa698355b8d80d78aecac48"
     },
     {
+      "path": "national_bank.py",
+      "bytes": 19671,
+      "sha256": "894f635453d7393994585c700e9ff6792e8107e656da86b3da632bff6c24f4f7"
+    },
+    {
       "path": "page_assist.py",
       "bytes": 18483,
       "sha256": "9bb3ba203f8df60810c6ef9a8ed040fbf3a84b4a2d5562bc0e1af9f34338a0d7"
     },
     {
       "path": "question_reading.py",
-      "bytes": 13190,
-      "sha256": "160a90b84c41c0a75abc5e39148a775f615fa185b878c256c41feeabc0c3a2df"
+      "bytes": 13643,
+      "sha256": "7402d340a2c1c4bafb08ca787b8aff5476adc5f146087dcf32a9eaa8a6699e2c"
     },
     {
       "path": "requirements-dev.txt",
@@ -165,19 +185,14 @@
       "sha256": "e3186a37efba2b74cf7233ab1a4d52bdb403ff6a0e6ab1d8fc6e021243c5b956"
     },
     {
-      "path": "samples/knowledge.md",
-      "bytes": 1866,
-      "sha256": "7f0abe6af24473f815a32f1dd47196d33adc79df4d2d6235f7c51a9de58e283b"
-    },
-    {
-      "path": "samples/questions.json",
-      "bytes": 22769,
-      "sha256": "c0833749537fb27cf8e31ad15c51f5c3ba74ebcabaa63eeb4ebc59b78a3fcab0"
-    },
-    {
       "path": "scripts/build_release.py",
-      "bytes": 6593,
-      "sha256": "eb982ea23d0c3ed91871da186e72dc162fa888f4d95c51cecfbd63a33896c0da"
+      "bytes": 6676,
+      "sha256": "2ad39c5413eba8da47ba6203a5da28f535bb7b37e66a4600b86113c3a1162992"
+    },
+    {
+      "path": "scripts/install_national_bank.py",
+      "bytes": 2012,
+      "sha256": "ea78881186d49e59d8d3f56dcee7284039a0220eefe9baecd44c31ed41203b30"
     },
     {
       "path": "service.ps1",
@@ -186,8 +201,8 @@
     },
     {
       "path": "shenlun.py",
-      "bytes": 31234,
-      "sha256": "e94085c3d3825dde67091658834a756f41910fdcb56fc0f82d908e65506bd8e6"
+      "bytes": 31330,
+      "sha256": "c834c9fd729457596a02c731effb1357f8d43d0ee776b36e727e79e164df5369"
     },
     {
       "path": "shenlun_dimensions.py",
@@ -233,6 +248,11 @@
       "path": "tests/test_learning_coach.py",
       "bytes": 17774,
       "sha256": "ab75a77aff04ec880f0cc1b27b46024ede3949e829f4fe9d245ab079d4d2843f"
+    },
+    {
+      "path": "tests/test_national_bank.py",
+      "bytes": 8343,
+      "sha256": "6926b0c8f4a7d06b41316c01de0fa63161f9095cbb4d6fb40eabafeb52b22fe1"
     },
     {
       "path": "tests/test_ocr.py",
@@ -351,8 +371,8 @@
     },
     {
       "path": "web/app.js",
-      "bytes": 65057,
-      "sha256": "72ce898393df82a872d4fc7b072708900d60bf0e871d83578a0e840bf332ff32"
+      "bytes": 65254,
+      "sha256": "f1beadeb8b8737e8ec0409823d3d668f9d11825edf726a5847a95f3a0699822e"
     },
     {
       "path": "web/calculation-training.css",
@@ -386,8 +406,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 1637,
-      "sha256": "566283e6b26ba29b44575963ba8c996ef348295fb944944ce64506a7b40f0bd0"
+      "bytes": 1741,
+      "sha256": "09f30e3654c46ff2485f66bf09de577dafa46cc2dc35fd39bc6ad0954495c3f7"
     },
     {
       "path": "web/knowledge-reader.js",
@@ -413,6 +433,16 @@
       "path": "web/learning-coach.js",
       "bytes": 13628,
       "sha256": "e8c6f419843015b00af532c892a1425a99a497e6e83e9d9ceea7af1d7b6121eb"
+    },
+    {
+      "path": "web/national-bank.css",
+      "bytes": 1433,
+      "sha256": "2f7ba10509cd948806540e0cfd00154547bde89cc91a3be6b3ae0b8254a449ca"
+    },
+    {
+      "path": "web/national-bank.js",
+      "bytes": 7722,
+      "sha256": "21803b5f962cf4b368f2901da9e82a6e95c4f67ae1c1af760c2e36c64c0579c9"
     },
     {
       "path": "web/page-assist.css",

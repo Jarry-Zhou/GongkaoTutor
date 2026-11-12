@@ -43,6 +43,7 @@ def evidence_fingerprint(app,a,diagnosis,shenlun_mode=True):
 
 
 def plan(app,body):
+    from question_reading import image_count
     key,point=scope(body);previous=latest(app,key);covered=(previous or {}).get('covered',{})
     domain='shenlun' if body.get('domain')=='shenlun' else ''
     dimensions_mode=body.get('shenlun_dimensions_version')==dimensions.VERSION
@@ -57,10 +58,10 @@ def plan(app,body):
     rows.sort(key=lambda r:(r[0]['created_at'],r[0]['id']))
     batch=[];images=0;characters=0;essays=0
     for a,d,fp in rows:
-        from question_reading import presentation
+        from question_reading import presentation,image_count
         q=coach.current_question(app,a);spec=q.get('reading_source',{})
         if shenlun.is_shenlun(q) and essays>=(1 if dimensions_mode else 2):break
-        count=(1 if spec.get('material') else 0)+len(spec.get('question',[])) if q.get('requires_image') or q.get('display_original') else (1 if q.get('visual') else 0)
+        count=image_count(q)
         if shenlun_mode and shenlun.is_shenlun(q):count+=shenlun.draft_count(app,a)
         if images+count>MAX_IMAGES and batch:break
         size=coach.material_bundle(q)['sent_characters']
@@ -75,7 +76,7 @@ def plan(app,body):
     for task,fp in task_pending:
         q=app.store.get('questions',task['question_id'])
         spec=q.get('reading_source',{})
-        count=((1 if spec.get('material') else 0)+len(spec.get('question',[]))) if q.get('requires_image') or q.get('display_original') else (1 if q.get('visual') else 0)
+        count=image_count(q)
         size=coach.material_bundle(q)['sent_characters']
         if (images+count>MAX_IMAGES or characters+size>50000) and (batch or tasks):break
         tasks.append((task,fp));images+=min(count,MAX_IMAGES);characters+=size

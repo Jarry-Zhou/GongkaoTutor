@@ -15,7 +15,7 @@
 | shenlun.py / shenlun_dimensions.py | 方法适配、引用校验、申论报告及维度证据 |
 | calculation_training.py | 公式出题、容差、计时和独立计算记录 |
 | web/ | 网页与界面资源 |
-| samples/ | 原创示例，不是个人记录或真题包 |
+| national_bank.py / banks/guokao/ | 固定来源索引、受限题面解析、配图、题库归档与恢复 |
 | tests/ | 临时库、合成资料与本地模拟接口 |
 | vendor/shenlun-master/ | 固定版本规则、许可和清单 |
 | scripts/build_release.py | 白名单打包、敏感模式检查及SHA-256清单 |

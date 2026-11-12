@@ -116,7 +116,7 @@ class Store:
         self.lock = threading.RLock()
         with self.connect() as db:
             db.execute('PRAGMA journal_mode=WAL')
-            for table in ['questions', 'documents', 'sessions', 'attempts', 'diagnoses', 'imports', 'templates', 'file_imports', 'page_repairs','learning_analyses','coach_tasks','shenlun_contexts','shenlun_feedback','shenlun_transcriptions','calculation_sessions']:
+            for table in ['questions', 'documents', 'sessions', 'attempts', 'diagnoses', 'imports', 'templates', 'file_imports', 'page_repairs','learning_analyses','coach_tasks','shenlun_contexts','shenlun_feedback','shenlun_transcriptions','calculation_sessions','bank_catalog']:
                 db.execute(f'CREATE TABLE IF NOT EXISTS {table} (id TEXT PRIMARY KEY, data TEXT NOT NULL)')
             db.execute('CREATE TABLE IF NOT EXISTS settings (id TEXT PRIMARY KEY, data TEXT NOT NULL)')
 
@@ -226,7 +226,7 @@ def normalize_question(raw, source='用户导入'):
     if isinstance(visual,dict) and re.fullmatch(r'vis_[a-f0-9]{32}',str(visual.get('id',''))):
         q['visual']={k:visual[k] for k in ('id','mime','page','label','reviewed') if k in visual}
     if isinstance(raw.get('source_page'),int):q['source_page']=raw['source_page']
-    for key in ('source_pages','source_number','source_section','answer_source','reference_optional','score_basis','quality_verified','material_pages','display_original','origin_key','reading_source','requires_image'):
+    for key in ('source_pages','source_number','source_section','answer_source','reference_optional','score_basis','quality_verified','material_pages','display_original','origin_key','reading_source','requires_image','rich_content','true_exam','source_warnings'):
         if key in raw:q[key]=raw[key]
     if isinstance(raw.get('page_images'),list):
         q['page_images']=[{k:p[k] for k in ('batch_id','file_id','page','label') if k in p} for p in raw['page_images'][:10]
@@ -254,7 +254,7 @@ def normalize_question(raw, source='用户导入'):
         q['answer_ambiguity']=str(raw['answer_ambiguity']);q['issues'].append(q['answer_ambiguity'])
     if q.get('visual') and q['visual'].get('reviewed') is not True:
         q['issues'].append('原图裁剪范围及参考答案待核对')
-    if re.search(r'如下图|见下图|如图所示|根据图形', stem) and not q['material'] and not q.get('visual') and not q.get('page_images'):
+    if re.search(r'如下图|见下图|如图所示|根据图形', stem) and not q['material'] and not q.get('visual') and not q.get('page_images') and not q.get('rich_content'):
         q['issues'].append('图形可能缺失，请补充材料后核对')
     q['status'] = 'review' if q['issues'] else 'ready'
     q['knowledge_point_ids'] = concept_ids(q['knowledge_points'])
@@ -298,6 +298,12 @@ class Application:
         self.uploads = FileImportManager(self, UserError)
         from page_assist import PageAssist
         self.page_assist = PageAssist(self.uploads)
+        import national_bank
+        national_bank.recover_job(self)
+
+    def catalog_questions(self):
+        import national_bank
+        return national_bank.visible_questions(self)
 
     def config(self, private=False):
         config = self.store.get('settings', 'model', {'id': 'model', 'base_url': '', 'model': '', 'timeout': 60})
@@ -492,7 +498,7 @@ class Application:
         wrong = {key for key, a in latest.items() if a.get('correct') is False}
         weak = {p for a in attempts if a.get('correct') is False for p in a['question'].get('knowledge_points', [])}
         pool = []
-        for q in self.store.all('questions'):
+        for q in self.catalog_questions():
             if q['status'] != 'ready':
                 continue
             if spec.get('shenlun_only'):
@@ -533,10 +539,12 @@ class Application:
             key = q['group_id'] if q.get('group_id') and q.get('whole_group') else q['id']
             blocks.setdefault(key, []).append(q)
         original_groups = defaultdict(set)
-        for q in self.store.all('questions'):
+        for q in self.catalog_questions():
             if q.get('group_id') and q.get('whole_group'):
                 original_groups[q['group_id']].add(q['id'])
         valid = [qs for key, qs in blocks.items() if key not in original_groups or {q['id'] for q in qs} == original_groups[key]]
+        # Randomize material groups, but retain the source sequence inside each group.
+        valid = [sorted(qs,key=lambda q:q['source_number']) if len(qs)>1 and all(q.get('true_exam') for q in qs) else qs for qs in valid]
         sums = {0: []}
         for block in valid:
             for n, picks in list(sums.items())[::-1]:
@@ -591,8 +599,11 @@ class Application:
             from question_reading import presentation
             q=presentation(self,q)
             exposed = {k: v for k, v in q.items() if k not in ['answer', 'explanation', 'history', 'fingerprint','answer_source']}
+            if q.get('rich_content'):
+                exposed['rich_content']={k:v for k,v in q['rich_content'].items() if k!='explanation'}
             if finished or (session['kind'] != 'exam' and session['feedback'] == 'each' and session['answers'].get(q['id'], {}).get('checked')):
                 exposed.update(answer=q['answer'], explanation=q['explanation'])
+                if q.get('rich_content'):exposed['rich_content']=q['rich_content']
             exposed['points'] = self.points(q, session['spec'])
             public['questions'].append(exposed)
         public['remaining_seconds'] = max(0, round(session['duration_minutes']*60-(time.time()-session['started_at'])))
@@ -779,7 +790,7 @@ class Application:
         recent = [{'id': s['id'], 'title': s['title'], 'kind': s['kind'], 'score': s['score'], 'max_score': s['max_score'], 'pending_score': s['pending_score'], 'finished_at': s['finished_at']} for s in finished[:8]]
         return {'total_attempts': len(attempts), 'correct': sum(a['correct'] is True for a in attempts), 'wrong': sum(a['correct'] is False for a in attempts),
             'study_minutes': round(sum(a['response'].get('duration_seconds', 0) for a in attempts)/60, 1), 'modules': [summarize(k, v) for k, v in modules.items()], 'knowledge': knowledge,
-            'recent_sessions': recent, 'question_count': len(self.store.all('questions')), 'document_count': self.store.count('documents'),
+            'recent_sessions': recent, 'question_count': len(self.catalog_questions()), 'document_count': self.store.count('documents'),
             'active_sessions': [{'id': s['id'], 'title': s['title'], 'kind': s['kind']} for s in self.store.all('sessions') if s['status'] == 'active']}
 
     def estimate(self):
@@ -812,7 +823,7 @@ class Application:
     def dispatch(self, method, path, body):
         parts = path.strip('/').split('/')
         if path == '/api/health':
-            return {'ok': True, 'version': '0.10.0', 'application_id': 'gongkao-tutor'}
+            return {'ok': True, 'version': '0.11.0', 'application_id': 'gongkao-tutor'}
         if len(parts)>=2 and parts[:2]==['api','shenlun']:
             import shenlun
             if len(parts)==2 and method=='GET':return shenlun.overview(self)
@@ -835,6 +846,17 @@ class Application:
             if len(parts) in (4,5) and parts[2]=='tasks':
                 if len(parts)==4 and method=='GET':return learning_coach.task_action(self,parts[3],'read',body)
                 if len(parts)==5 and method=='POST':return learning_coach.task_action(self,parts[3],parts[4],body)
+        if len(parts)>=2 and parts[1]=='national-bank':
+            import national_bank
+            if parts[2:]==['status'] and method=='GET':return national_bank.status(self)
+            if parts[2:]==['install'] and method=='POST':return national_bank.start_install(self,body)
+            if parts[2:]==['restore'] and method=='POST':
+                if body.get('confirmed') is not True:raise UserError('请确认恢复旧题库。',409)
+                return national_bank.restore(self)
+            if parts[2:]==['archived'] and method=='GET':
+                hidden=set(self.store.get('bank_catalog','current',{}).get('hidden_question_ids',[]))
+                return [q for q in self.store.all('questions') if q['id'] in hidden]
+            raise UserError('真题入口不存在。',404)
         if len(parts)>=2 and parts[1]=='calculation-training':
             import calculation_training
             if len(parts)==2 and method=='GET':return calculation_training.overview(self)
@@ -862,9 +884,10 @@ class Application:
             return self.uploads.dispatch(method, parts, body)
         if len(parts)>=2 and parts[1]=='page-repairs':return self.page_assist.dispatch(method,parts,body)
         if path == '/api/bootstrap':
-            qs = self.store.all('questions')
+            import national_bank
+            qs = self.catalog_questions()
             import local_ocr
-            return {'modules': list(dict.fromkeys(MODULES+[q['module'] for q in qs])), 'types': KINDS, 'profile': self.profile(), 'settings': self.config(), 'upload_limits': self.uploads.limits(), 'ocr': local_ocr.status(),
+            return {'modules': list(dict.fromkeys(MODULES+[q['module'] for q in qs])), 'types': KINDS, 'profile': self.profile(), 'settings': self.config(), 'upload_limits': self.uploads.limits(), 'ocr': local_ocr.status(),'national_bank':national_bank.status(self),
                 'inventory': dict(Counter(q['module'] for q in qs if q['status'] == 'ready')), 'knowledge_points': sorted({p for q in qs for p in q['knowledge_points']})}
         if path == '/api/settings':
             if method == 'GET':
@@ -911,7 +934,7 @@ class Application:
             (folder/key).write_bytes(raw)
             return {'id': key, 'name': Path(str(body.get('name', '草稿图片'))).name[:150], 'mime': mime}
         if path == '/api/questions' and method == 'GET':
-            return self.store.all('questions')
+            return self.catalog_questions()
         if path == '/api/questions/bulk' and method == 'PATCH':
             ids = body.get('ids', [])
             if not isinstance(ids, list) or not 1 <= len(ids) <= 500:
@@ -958,12 +981,7 @@ class Application:
         if len(parts) == 4 and parts[1] == 'imports' and parts[3] == 'commit':
             return self.commit_import(parts[2])
         if path == '/api/demo' and method == 'POST':
-            rows = json.loads((ROOT/'samples'/'questions.json').read_text(encoding='utf-8'))
-            batch = self.preview_import({'rows': rows, 'name': '内置原创示例（非真题）'})
-            result = self.commit_import(batch['id'])
-            if not any(d['title'] == '示例知识笔记（原创）' for d in self.store.all('documents')):
-                self.add_document({'title': '示例知识笔记（原创）', 'text': (ROOT/'samples'/'knowledge.md').read_text(encoding='utf-8')})
-            return result
+            raise UserError('默认题库已改为国考真题。请在“我的题库”打开国考真题入口确认下载。',409)
         if path == '/api/documents':
             if method == 'POST':
                 return self.add_document(body)
@@ -1015,12 +1033,12 @@ class Application:
         if path == '/api/score-estimates':
             return self.estimate()
         if path == '/api/export':
-            return {'version': '0.10.0', 'exported_at': now(), **{key: self.store.all(key) for key in ['questions', 'documents', 'attempts', 'sessions', 'diagnoses', 'templates','learning_analyses','coach_tasks','shenlun_contexts','shenlun_feedback','shenlun_transcriptions','calculation_sessions']}}
+            return {'version': '0.11.0', 'exported_at': now(), **{key: self.store.all(key) for key in ['questions', 'documents', 'attempts', 'sessions', 'diagnoses', 'templates','learning_analyses','coach_tasks','shenlun_contexts','shenlun_feedback','shenlun_transcriptions','calculation_sessions','bank_catalog']}}
         raise UserError('接口不存在。', 404)
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = 'Zhixu/0.10.0'
+    server_version = 'Zhixu/0.11.0'
     def log_message(self, format, *args):
         # No payloads, keys, model responses, or query strings in logs.
         if args and isinstance(args[0], str):
@@ -1046,6 +1064,11 @@ class Handler(BaseHTTPRequestHandler):
                 raise UserError('拒绝跨站请求。', 403)
             path = urllib.parse.unquote(urllib.parse.urlparse(self.path).path)
             upload_parts = path.strip('/').split('/')
+            if self.command=='GET' and len(upload_parts)==3 and upload_parts[:2]==['api','national-assets']:
+                import national_bank
+                payload=national_bank.asset_path(self.server.application,upload_parts[2]).read_bytes()
+                self.send_response(200);self.send_header('Content-Type',national_bank.image_mime(payload));self.send_header('Content-Length',str(len(payload)))
+                self.send_header('Cache-Control','private, max-age=86400');self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(payload);return
             if self.command=='GET' and len(upload_parts)==3 and upload_parts[:2]==['api','evidence']:
                 if not re.fullmatch(r'img_[a-f0-9]{16}',upload_parts[2]):raise UserError('草稿图片不存在。',404)
                 target=self.server.application.store.folder/'evidence'/upload_parts[2]

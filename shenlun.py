@@ -353,8 +353,10 @@ def review_iter(app):
 
 def overview(app):
     questions={q['id']:q for q in app.store.all('questions') if is_shenlun(q)}
+    active={q['id'] for q in app.catalog_questions()}
     counts={k:0 for k in KINDS};rows=[]
     for q in questions.values():
+        if q['id'] not in active:continue
         ctx=context(app,q)
         if q['status']=='ready':counts[ctx['kind']]+=1
         rows.append({'id':q['id'],'title':q['stem'][:180],'status':q['status'],'context':ctx})

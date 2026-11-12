@@ -13,4 +13,6 @@ if ($LASTEXITCODE -ne 0) { throw '请使用 Python 3.11 或以上版本。' }
 if ($LASTEXITCODE -ne 0) { throw '依赖安装未完成，请检查网络和安装输出。' }
 & $taskVenv -c "import local_ocr; assert local_ocr.status()['available'], 'OCR models missing'; print('Local OCR ready')"
 if ($LASTEXITCODE -ne 0) { throw 'OCR 模型检查未通过。' }
-Write-Host '文档导入和本地中文 OCR 已安装，请重新启动知序。'
+& $taskVenv (Join-Path $PSScriptRoot 'scripts\install_national_bank.py')
+if ($LASTEXITCODE -ne 0) { throw '依赖已就绪，真题下载未完成。原题库保留，可重新运行首次安装继续下载。' }
+Write-Host '依赖与题库检查完成，请启动知序。已有题库需在应用中确认后替换。'
